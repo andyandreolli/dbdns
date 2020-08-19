@@ -122,7 +122,7 @@ class dbplot:
                 if sdb['meta']['problem'] == 'cou':
                     xval *= factor
                 ax.scatter(xval, yval, marker=self.settings['datasets'][dataset]['shape'], color=self.settings['problems'][sdb['meta']['problem']])
-            except:
+            except Exception as message:
                 if x == 'rew' or y == 'rew':
                     x = x.replace('rew', 'reb')
                     y = y.replace('rew', 'reb')
@@ -141,6 +141,7 @@ class dbplot:
                     ax.scatter(xval, yval, marker=self.settings['datasets'][dataset]['shape'], color=self.settings['problems'][sdb['meta']['problem']])
                 else:
                     print('Error with simulation', sim)
+                    print(message)
         plt.show()
 
     def printout(self,x,y,**kwargs):
@@ -158,7 +159,7 @@ class dbplot:
                 if sdb['meta']['problem'] == 'cou':
                     xval *= factor
                 lines += sdb['meta']['problem'] + '\t' + dataset + '\t' + str(xval) + '\t' + str(yval) + '\n'
-            except:
+            except Exception as message:
                 if x == 'rew' or y == 'rew':
                     x = x.replace('rew', 'reb')
                     y = y.replace('rew', 'reb')
@@ -177,6 +178,7 @@ class dbplot:
                     lines += sdb['meta']['problem'] + '\t' + dataset + '\t' + str(xval) + '\t' + str(yval) + '\n'
                 else:
                     print('Error with simulation', sim)
+                    print(message)
         print()
         print('\n'.join(sorted(lines.splitlines())))
         print()
