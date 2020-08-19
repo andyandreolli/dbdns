@@ -1,1 +1,1 @@
-from dnsdb.dnsdb import *
+from dbdns.dbdns import *
