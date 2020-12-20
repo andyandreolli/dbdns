@@ -157,13 +157,17 @@ class dbplot:
                 yval = dict_list(sdb,y)
                 lines += sdb['meta']['problem'] + '\t' + dataset + '\t\t' + "{:20}".format(xval) + '\t' + "{:20}".format(yval) + '\n'
             except Exception as message:
-                if x == 'rew' or y == 'rew':
+                if len(x) == 1:
+                    x = x[0]
+                if len(y) == 1:
+                    y = y[0]
+                if 'rew' in x or 'rew' in y:
                     x = x.replace('rew', 'reb')
                     y = y.replace('rew', 'reb')
                     xval = dict_list(sdb,x)
                     yval = dict_list(sdb,y)
                     lines += sdb['meta']['problem'] + '\t' + dataset + '\t\t' + "{:20}".format(xval) + '\t' + "{:20}".format(yval) + '\n'
-                elif x == 'reb' or y == 'reb':
+                elif 'reb' in x or 'reb' in y:
                     x = x.replace('reb', 'rew')
                     y = y.replace('reb', 'rew')
                     xval = dict_list(sdb,x)
