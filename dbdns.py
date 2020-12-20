@@ -145,7 +145,6 @@ class dbplot:
         plt.show()
 
     def printout(self,x,y,**kwargs):
-        factor = kwargs.get('factor',1)
         lines = ''
         for sim in self.database:
             sdb = self.database[sim]
@@ -156,26 +155,20 @@ class dbplot:
             try:
                 xval = dict_list(sdb,x)
                 yval = dict_list(sdb,y)
-                if sdb['meta']['problem'] == 'cou':
-                    xval *= factor
-                lines += sdb['meta']['problem'] + '\t' + dataset + '\t' + str(xval) + '\t' + str(yval) + '\n'
+                lines += sdb['meta']['problem'] + '\t' + dataset + '\t\t' + "{:20}".format(xval) + '\t' + "{:20}".format(yval) + '\n'
             except Exception as message:
                 if x == 'rew' or y == 'rew':
                     x = x.replace('rew', 'reb')
                     y = y.replace('rew', 'reb')
                     xval = dict_list(sdb,x)
                     yval = dict_list(sdb,y)
-                    if sdb['meta']['problem'] == 'cou':
-                        xval *= factor
-                    lines += sdb['meta']['problem'] + '\t' + dataset + '\t' + str(xval) + '\t' + str(yval) + '\n'
+                    lines += sdb['meta']['problem'] + '\t' + dataset + '\t\t' + "{:20}".format(xval) + '\t' + "{:20}".format(yval) + '\n'
                 elif x == 'reb' or y == 'reb':
                     x = x.replace('reb', 'rew')
                     y = y.replace('reb', 'rew')
                     xval = dict_list(sdb,x)
                     yval = dict_list(sdb,y)
-                    if sdb['meta']['problem'] == 'cou':
-                        xval *= factor
-                    lines += sdb['meta']['problem'] + '\t' + dataset + '\t' + str(xval) + '\t' + str(yval) + '\n'
+                    lines += sdb['meta']['problem'] + '\t' + dataset + '\t\t' + "{:20}".format(xval) + '\t' + "{:20}".format(yval) + '\n'
                 else:
                     print('Error with simulation', sim)
                     print(message)
